@@ -1,0 +1,28 @@
+PAYPAL>
+E-mail da Conta PayPal: 6MCHRAFUQBN8W
+ID do Botão Hospedado PayPal: SRUGS925FP8GA
+
+Telegram>
+Token do Bot do Telegram: 7459800242:AAGlBzYC1hwsDI2w3Qb97p3CShcv8_6GdOA
+Seu Chat ID: 8072555685
+--------------
+Logins
+
+Artista Principal (Padrão):
+
+Email: admin@exemplo.com
+
+Senha: admin123
+
+
+Artista 2 (de Teste):
+
+Email: artista2@exemplo.com
+
+Senha: artista123
+--------------
+IDs do cliente OAuth 2.0:
+602224170023-g7314r5320c5tvb3afnanc7h82henlfa.apps.googleusercontent.com
+--------------
+Banco de dados post gree render:
+postgresql://artista_db_user:fSDB7JZLo4Yb88I2ArgidBL9b5knQSKb@dpg-d3a9jmur433s73d58tj0-a/artista_db
