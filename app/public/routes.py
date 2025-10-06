@@ -6,8 +6,8 @@ from app import socketio
 import json
 from app.telegram_utils import send_telegram_message
 
-# Cria o Blueprint para as rotas públicas
-public_bp = Blueprint('public', __name__, template_folder='../../templates')
+# Cria o Blueprint para as rotas públicas (MODIFICADO: 'template_folder' removido)
+public_bp = Blueprint('public', __name__)
 
 
 @public_bp.route('/')
