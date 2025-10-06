@@ -2,12 +2,11 @@
 
 from flask import Blueprint
 
-# 1. Cria o Blueprint do admin, que será usado por todos os outros arquivos de rota.
+# 1. Cria o Blueprint do admin (MODIFICADO: 'template_folder' removido)
 admin_bp = Blueprint(
     'admin', 
     __name__, 
-    url_prefix='/admin', 
-    template_folder='../../templates'
+    url_prefix='/admin'
 )
 
 # 2. Importa os módulos de rotas.
