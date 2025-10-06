@@ -5,7 +5,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from app.utils import get_db_connection
 import re # Importado para validação de senha
 
-auth_bp = Blueprint('auth', __name__, template_folder='../../templates')
+# LINHA MODIFICADA: 'template_folder' removido
+auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
