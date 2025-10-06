@@ -1,12 +1,10 @@
-# --- Código corrigido para: app/__init__.py ---
-
 import json
 import os 
 import urllib3
 from flask import Flask, session
 from flask_socketio import SocketIO
 from .utils import get_db_connection
-from .db_setup import initialize_database  # 1. IMPORTE A NOVA FUNÇÃO
+from .db_setup import initialize_database
 
 # Cria a instância do SocketIO globalmente
 socketio = SocketIO()
@@ -14,7 +12,8 @@ socketio = SocketIO()
 def create_app():
     """Cria e configura uma instância da aplicação Flask."""
     
-    app = Flask(__name__, instance_relative_config=True, static_folder='../static')
+    # O argumento 'static_folder' foi removido para usar o padrão do Flask
+    app = Flask(__name__, instance_relative_config=True)
     app.secret_key = 'sua_chave_secreta_super_aleatoria_aqui'
 
     # === INÍCIO DA CORREÇÃO PARA URLLIB3/EVENTLET/SSL NO PYTHON RECENTE ===
@@ -24,7 +23,7 @@ def create_app():
         del urllib3.util.ssl_.minimum_version
     # === FIM DA CORREÇÃO ===
 
-    # --- 2. EXECUTE A INICIALIZAÇÃO DO BANCO DE DADOS AQUI ---
+    # --- EXECUTE A INICIALIZAÇÃO DO BANCO DE DADOS AQUI ---
     # Usamos o app_context para garantir que qualquer configuração da app esteja disponível
     with app.app_context():
         initialize_database()
