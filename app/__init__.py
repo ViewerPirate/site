@@ -12,8 +12,13 @@ socketio = SocketIO()
 def create_app():
     """Cria e configura uma instância da aplicação Flask."""
     
-    # O argumento 'static_folder' foi removido para usar o padrão do Flask
-    app = Flask(__name__, instance_relative_config=True)
+    # LINHA MODIFICADA: Adiciona a definição global da pasta de templates
+    app = Flask(__name__, 
+                instance_relative_config=True, 
+                static_url_path='/static', 
+                static_folder='../static', 
+                template_folder='../templates')
+    
     app.secret_key = 'sua_chave_secreta_super_aleatoria_aqui'
 
     # === INÍCIO DA CORREÇÃO PARA URLLIB3/EVENTLET/SSL NO PYTHON RECENTE ===
@@ -23,13 +28,9 @@ def create_app():
         del urllib3.util.ssl_.minimum_version
     # === FIM DA CORREÇÃO ===
 
-    # --- EXECUTE A INICIALIZAÇÃO DO BANCO DE DADOS AQUI ---
-    # Usamos o app_context para garantir que qualquer configuração da app esteja disponível
     with app.app_context():
         initialize_database()
-    # -----------------------------------------------------------
 
-    # Inicializa o SocketIO com a app Flask
     socketio.init_app(app)
 
     # Importa e registra os Blueprints
@@ -43,7 +44,6 @@ def create_app():
     app.register_blueprint(client_bp)
     app.register_blueprint(admin_bp)
 
-    # --- Injetor de Contexto Global ---
     @app.context_processor
     def inject_site_settings():
         try:
