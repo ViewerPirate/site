@@ -9,7 +9,8 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash,
 from app import socketio
 from app.utils import get_db_connection, add_event_to_log, login_required, add_notification
 
-client_bp = Blueprint('client', __name__, template_folder='../../templates')
+# LINHA MODIFICADA: 'template_folder' removido
+client_bp = Blueprint('client', __name__)
 
 # --- Funções Auxiliares (Novas) ---
 def get_artist_names_by_ids(conn, artist_ids):
@@ -234,6 +235,7 @@ def client_create_commission():
     try:
         cursor.execute("SELECT value FROM settings WHERE key = 'commission_types'")
         settings_db = cursor.fetchone()
+        
         all_types = json.loads(settings_db['value']) if settings_db else []
         selected_type_config = next((t for t in all_types if t['name'] == data.get('type')), None)
         commission_phases = selected_type_config.get('phases', []) if selected_type_config else []
@@ -337,7 +339,7 @@ def request_revision(order_id):
         cursor.close()
         conn.close()
         return jsonify({'success': False, 'message': 'Limite de revisões para esta fase atingido.'}), 403
-        
+    
     revisions_used += 1
     comments = json.loads(order['comments']) if order['comments'] else []
     revision_comment = {
