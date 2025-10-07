@@ -199,6 +199,12 @@
 
                     <h2>Inspirações</h2>
                     <p>{{ settings.artist_inspirations }}</p>
+
+                    <div style="margin-top: 2rem;">
+                        <a href="{{ url_for('public.comissoes_artista', username=main_artist_profile.username) }}" class="cta-button">
+                            <i class="fas fa-tags"></i> Ver Comissões e Preços
+                        </a>
+                    </div>
                 </div>
             </div>
         {% endif %}
